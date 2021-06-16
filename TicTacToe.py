@@ -1,50 +1,6 @@
 import random
 import os
 
-def main():
-    print('Welcome to Tic Tac Toe!')
-    while True:
-        # Set the game up here
-        #pass
-
-        board=['#' for i in range(11)]
-        #display_board(board)
-        l=player_input()
-        turn=choose_first()
-        print(f'Player 1 is {l[0]} starts. ')
-        print(f'Player 2 is {l[1]} starts. ')
-        print("-----------------------------")
-        print(f'Player {l[turn]} starts!!!')
-
-        while full_board_check(board)== False:
-            turn=(turn%2)
-            print("---------------------")
-            print(f"PLayer {(turn%2)+1}'s turn.")
-            position=player_choice(board,l[turn])
-            place_marker(board,l[turn],position)
-            v=win_check(board,l[turn])
-            display_board(board)
-            #print(position,v,l[turn])
-
-            if v == "win":
-                print(f"Player {l[turn]} wins.")
-                replay()
-            if full_board_check(board)==True:
-                print("Game Tied!!!")
-                replay()
-            turn+=1
-
-        if replay()== False:
-            print("Exiting.....")
-            break
-        else:
-            continue
-
-if __name__ == '__main__':
-    main()
-
-
-
 def display_board(board):
     clear()
     for i in range(7,0,-3):
@@ -121,6 +77,49 @@ def replay():
     if chk.lower()=='y':
         return True
     return False
+
+
+def main():
+    print('Welcome to Tic Tac Toe!')
+    while True:
+        # Set the game up here
+        #pass
+
+        board=['#' for i in range(11)]
+        #display_board(board)
+        l=player_input()
+        turn=choose_first()
+        print(f'Player 1 is {l[0]} starts. ')
+        print(f'Player 2 is {l[1]} starts. ')
+        print("-----------------------------")
+        print(f'Player {l[turn]} starts!!!')
+
+        while full_board_check(board)== False:
+            turn=(turn%2)
+            print("---------------------")
+            print(f"PLayer {(turn%2)+1}'s turn.")
+            position=player_choice(board,l[turn])
+            place_marker(board,l[turn],position)
+            v=win_check(board,l[turn])
+            display_board(board)
+            #print(position,v,l[turn])
+
+            if v == "win":
+                print(f"Player {l[turn]} wins.")
+                replay()
+            if full_board_check(board)==True:
+                print("Game Tied!!!")
+                replay()
+            turn+=1
+
+        if replay()== False:
+            print("Exiting.....")
+            break
+        else:
+            continue
+
+if __name__ == '__main__':
+    main()
 
 
     
