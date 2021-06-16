@@ -17,7 +17,7 @@ def clear():
 def player_input():
     player2=['X','O']
     while len(player2)==2:
-        chk=str(input("Enter marker for Player 1: "))
+        chk=str(input("Enter marker for Player 1(X or O): "))
         chk=chk.upper()
         if chk not in player2:
             continue
@@ -73,7 +73,7 @@ def player_choice(board,mark):
 
 
 def replay():
-    chk=input("Enter Y to play again or press N to quit. ")
+    chk=input("Enter Y to play again or press N to quit: ")
     if chk.lower()=='y':
         return True
     return False
@@ -86,30 +86,31 @@ def main():
         #pass
 
         board=['#' for i in range(11)]
-        #display_board(board)
         l=player_input()
         turn=choose_first()
         print(f'Player 1 is {l[0]} starts. ')
         print(f'Player 2 is {l[1]} starts. ')
         print("-----------------------------")
         print(f'Player {l[turn]} starts!!!')
-
         while full_board_check(board)== False:
+
             turn=(turn%2)
             print("---------------------")
-            print(f"PLayer {(turn%2)+1}'s turn.")
+            print(f"Player {(turn%2)+1}'s turn.")
             position=player_choice(board,l[turn])
             place_marker(board,l[turn],position)
             v=win_check(board,l[turn])
             display_board(board)
-            #print(position,v,l[turn])
-
+            
             if v == "win":
-                print(f"Player {l[turn]} wins.")
-                replay()
+                print("---------------------")
+                print(f"Player {(turn%2)+1} wins with {l[turn]}. ")
+                break
+                
             if full_board_check(board)==True:
+                print("---------------------")
                 print("Game Tied!!!")
-                replay()
+                break
             turn+=1
 
         if replay()== False:
